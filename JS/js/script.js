@@ -49,19 +49,23 @@ var app = new Vue({
 		},
 		onScroll: function() {
 			this.showLink = window.scrollY > 50
+		},
+		calcSize: function() {
+			this.w = this.$refs.graphic.clientWidth - 40
+			this.h = this.$refs.graphic.clientHeight - 40
 		}
 	},
 	created() {
 		window.addEventListener('scroll', this.onScroll)
+		window.addEventListener('resize', this.calcSize)
 	},
 	mounted() {
-		fetch('js/easing-functions-subset-2.json')
+		fetch('json/easing-functions-subset-2.json')
 		.then(response => response.json())
 		.then(json => {			
 			app.modal.text = json.description;
 			app.easingFunctions = json.easingFunctions;
 		})
-		this.w = this.$refs.graphic.clientWidth - 40
-		this.h = this.$refs.graphic.clientHeight - 40
+		this.calcSize()
 	}
 })

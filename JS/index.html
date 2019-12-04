@@ -38,7 +38,7 @@
 						<div class="radio"><div></div></div>
 						{{fun.text}}
 						<small>{{fun.description}}</small>
-						<div class="tooltip">{{fun.formula}}</div>
+						<div class="tooltip">{{fun.equation}}</div>
 					</label>
 				</template>
 			</section>
@@ -47,11 +47,11 @@
 					<!--<canvas id="c" width="100%" height="400"></canvas>-->
 					<svg id="graphic" width="100%" height="100%" ref="graphic">
 						<line x1="0" x2="100%" :y1="h+20" :y2="h+20" stroke="black" id="x"/>
+						<line x1="20" x2="20" y1="100%" y2="0" stroke="black" id="y"/>
 						<line :x1="w+35" x2="100%" :y1="h+15" :y2="h+20" stroke="black"/>
 						<line :x1="w+35" x2="100%" :y1="h+25" :y2="h+20" stroke="black"/>
 						<line x1="15" x2="20" y1="5" y2="0" stroke="black"/>
 						<line x1="25" x2="20" y1="5" y2="0" stroke="black"/>
-						<line x1="20" x2="20" y1="100%" y2="0" stroke="black" id="y"/>
 						<text class="axis" x="10" :y="h+35">0</text>
 						<text class="axis" :x="w/3+10" :y="h+35">1</text>
 						<text class="axis" :x="w/3*2+10" :y="h+35">2</text>
@@ -74,12 +74,16 @@
 					</svg>
 				</div>
 				<div id="slider">
-					<input type="range" v-model="t" max="100" min="0">
+					<div class="slider-wrapper">
+						<div :style="{width: 'calc('+t+'% - '+0.2*t+'px'}" id="progress"></div>
+						<input type="range" v-model="t" max="100" min="0">
+					</div>
 					<button @click="play" :disabled="t == 100">Play</button>
 				</div>
 			</section>
 		</main>
 		<a href="#" class="mobile back-to-top" :class="{shown: showLink}">></a>
+		<footer>&copy; 2019 - Powered by an unknown participant</footer>
 	</div>
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
