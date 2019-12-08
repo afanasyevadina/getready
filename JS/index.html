@@ -25,7 +25,7 @@
 						<h5>About</h5>
 						<span  @click="modal.show = false">&times;</span>
 					</div>
-					<div class="modal-text">{{modal.text}}</div>
+					<div class="modal-text" v-html="modal.text"></div>
 				</div>
 			</transition>
 		</template>
@@ -75,8 +75,7 @@
 				</div>
 				<div id="slider">
 					<div class="slider-wrapper">
-						<div :style="{width: 'calc('+t+'% - '+0.2*t+'px'}" id="progress"></div>
-						<input type="range" v-model="t" max="100" min="0">
+						<input type="range" v-model="t" max="100" min="0" :style="progressStyle">
 					</div>
 					<button @click="play" :disabled="t == 100">Play</button>
 				</div>

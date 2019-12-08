@@ -14,12 +14,14 @@ var app = new Vue({
 		showLink: false
 	},
 	computed: {
-		/*f: function() {
-			return Math.round(this.fun(this.t))
-		},*/
 		scrolled: function() {
 			return window.scrollY > 0
-		}
+		},
+		progressStyle: function() {
+			return {
+				background: 'linear-gradient(90deg, #4c5f94 ' + this.t +'%, #c0c8dc ' + this.t + '%)'
+			}
+		},
 	},
 	methods: {
 		fun: function(t, formula) {
@@ -56,16 +58,17 @@ var app = new Vue({
 		}
 	},
 	created() {
+		fetch('json/easing-functions-subset-2.json')
+		.then(response => response.json())
+		.then(json => {			
+			app.modal.text = json.description
+			.replace(/((https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)/, '<a target="_blank" href="$1">$1</a>');
+			app.easingFunctions = json.easingFunctions;
+		})
 		window.addEventListener('scroll', this.onScroll)
 		window.addEventListener('resize', this.calcSize)
 	},
 	mounted() {
-		fetch('json/easing-functions-subset-2.json')
-		.then(response => response.json())
-		.then(json => {			
-			app.modal.text = json.description;
-			app.easingFunctions = json.easingFunctions;
-		})
 		this.calcSize()
 	}
 })
