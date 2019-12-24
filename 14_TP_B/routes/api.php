@@ -37,3 +37,4 @@ Route::get('symbols', function() {
 		];
 	}, Storage::disk('public')->files('symbols'));
 });
+Route::post('orders', 'Api\OrderController@store');

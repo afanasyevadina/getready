@@ -6,29 +6,9 @@
 
 	<title>Shop</title>
 	<link rel="stylesheet" type="text/css" href="public/css/style.css">
-	<script src="public/js/vue.js"></script>
-	<script src="public/js/axios.min.js"></script>
 </head>
 <body>
-	@verbatim
-	<header id="nav">
-		<a v-for="link in links" :href="link.link">{{ link.name }}</a>
-	</header>
-	@endverbatim
-	<div class="container">
-		@yield('content')
-	</div>
+	@yield('content')
+	<script src="public/js/app.js"></script>
 </body>
-<script type="text/javascript">
-	var nav = new Vue({
-		el: '#nav',
-		data: {
-			links: []
-		},
-		created() {
-			axios.get('api/links')
-			.then(response => this.links = response.data)
-		}
-	})
-</script>
 </html>

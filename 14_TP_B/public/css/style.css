@@ -19,6 +19,9 @@ header {
 	justify-content: space-around;
 	margin: 0 20px;
 }
+header a {
+	position: relative;
+}
 a:hover {
 	opacity: 0.8;
 }
@@ -48,7 +51,7 @@ label, button {
 .symbols input, .products input {
 	display: none;
 }
-label img {
+img {
 	max-width: 100%;
 	max-height: 100%;
 }
@@ -57,13 +60,13 @@ label img {
 	transform: scale(1.05);
 	box-shadow: 2px 3px 5px #aaa;
 }
-.products-enter {
+.dialog-enter {
 	opacity: 0;
 }
-.products-enter-active {
+.dialog-enter-active {
 	transition: .5s;
 }
-.products-enter-to {
+.dialog-enter-to {
 	opacity: 1;
 }
 .overlay {
@@ -79,8 +82,8 @@ label img {
 	z-index: 5;
 	background: #fff;
 	top: 50%;
-	transform: translateY(-50%);
-	left: 20%;
+	transform: translate(-50%, -50%);
+	left: 50%;
 	width: 60vw;
 }
 .dialog-header {
@@ -110,12 +113,15 @@ label img {
 	padding: 20px;
 }
 h1 {
-	margin: 30px;
+	margin: 20px;
+	padding: 20px;
+	text-align: center;
+	border-bottom: 1px solid #aaa;
 }
-.products label {
+.preview {
 	padding: 30px;
 }
-.products .img {
+.preview .img {
 	height: 250px;
 	width: 250px;
 	overflow: hidden;
@@ -129,14 +135,14 @@ h1 {
 	width: 70px;
 	position: absolute;
 }
-.products p {
+.preview p {
 	text-indent: 20px;
 	padding: 5px;
 }
 .info-name {
 	font-size: 20px;
 }
-button.add {
+button.go {
 	display: block;
 	outline: none;
 	border: none;
@@ -148,9 +154,78 @@ button.add {
 	box-shadow: 1px 2px 3px #aaa;
 	transition: .3s;
 }
-button.add:hover {
+button.go:hover {
 	transform: translateY(-3px);
 }
-button.add:active {
+button.go:active {
 	transform: translateY(1px);
+}
+.badge {
+	display: block;
+	padding: 2px 5px;
+	background: #e4584f;
+	box-shadow: 1px 2px 2px #aaa;
+	color: #fff;
+	font-size: 0.6em;
+	position: absolute;
+	top: 3px;
+	right: -5px;
+	border-radius: 5px;
+}
+.flex {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-around;
+	position: relative;
+	white-space: nowrap;
+}
+.orders {
+	display: flex;
+	flex-wrap: wrap;
+}
+.purchase {
+	padding: 30px;
+	text-align: center;
+	border: 1px solid #aaa;
+	box-shadow: 2px 3px 4px #aaa;
+	margin-top: 30px;
+	position: sticky;
+	top: 30px;
+}
+.orders .preview {
+	display: flex;
+}
+.contact {
+	padding: 30px;
+}
+.auto {
+	width: auto;
+}
+.contact > * {
+	display: block;
+	width: 100%;
+}
+.contact input {
+	padding: 7px;
+	margin: 15px 0;
+	box-shadow: 1px 2px 3px #aaa;
+	font-size: 20px;
+}
+.contact button.go {
+	margin: 10px 0;
+}
+.form-header {
+	justify-content: center;
+	padding: 10px;
+}
+.cancel {
+	background: #eee;
+	color: #666;
+	display: block;
+	outline: none;
+	border: none;
+	padding: 7px;
+	font-size: 17px;
+	border: 1px solid #999;
+	box-shadow: 1px 2px 3px #aaa;
 }
