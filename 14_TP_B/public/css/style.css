@@ -194,6 +194,7 @@ button.go:active {
 }
 .orders .preview {
 	display: flex;
+	position: relative;
 }
 .contact {
 	padding: 30px;
@@ -208,7 +209,7 @@ button.go:active {
 .contact input {
 	padding: 7px;
 	margin: 15px 0;
-	box-shadow: 1px 2px 3px #aaa;
+	border: 1px solid #444;
 	font-size: 20px;
 }
 .contact button.go {
@@ -228,4 +229,29 @@ button.go:active {
 	font-size: 17px;
 	border: 1px solid #999;
 	box-shadow: 1px 2px 3px #aaa;
+}
+.delete {
+	background: #eee;
+	color: #555;
+	outline: none;
+	border: none;
+	padding: 5px;
+	font-size: 12px;
+	border: 1px solid #aaa;
+	position: absolute;
+	bottom: 40px;
+	right: 30px;
+}
+.success {
+	padding: 40px;
+	background: #93f19a;
+	color: #09210b;
+	font-size: 20px;
+}
+.colors input {
+	display: inline-block;
+	margin: 0 10px;
+}
+.center {
+	text-align: center;
 }

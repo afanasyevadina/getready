@@ -1713,19 +1713,21 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       links: [],
-      currentTab: '/',
+      currentComponent: 'home-component',
       routes: {
         '/': 'home-component',
-        '#': 'home-component',
-        'cart.php': 'cart-component',
-        'admin.php': 'admin-component'
+        'cart.php': 'cart-component'
       },
       orders: []
     };
   },
-  computed: {
-    currentComponent: function currentComponent() {
-      return this.routes[this.currentTab];
+  methods: {
+    route: function route(link) {
+      if (link != '#') {
+        if (link == 'admin.php') location.href = 'login';else {
+          this.currentComponent = this.routes[link];
+        }
+      }
     }
   },
   created: function created() {
@@ -1734,10 +1736,21 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('api/links').then(function (response) {
       return _this.links = response.data;
     });
+    this.orders = JSON.parse(localStorage.getItem('orders'));
+    if (!this.orders) this.orders = [];
   },
   mounted: function mounted() {
     this.$on('add', function (order) {
       this.orders.push(order);
+      localStorage.setItem('orders', JSON.stringify(this.orders));
+    });
+    this.$on('remove', function (index) {
+      this.orders.splice(index, 1);
+      localStorage.setItem('orders', JSON.stringify(this.orders));
+    });
+    this.$on('fresh', function () {
+      this.orders = [];
+      localStorage.removeItem('orders');
     });
   }
 });
@@ -1792,11 +1805,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['orders'],
   data: function data() {
     return {
       purchase: false,
+      response: false,
       contact: {
         lastname: '',
         firstname: '',
@@ -1815,21 +1835,29 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     send: function send() {
+      var _this = this;
+
       axios.post('api/orders', {
         total: this.total,
         contact: this.contact,
         orders: this.orders.map(function (order) {
           return {
-            symbol: order.symbol.name,
-            product: order.product.name,
-            color: order.color
+            symbol_id: order.symbol.id,
+            product_id: order.product.id,
+            color_id: order.color.id
           };
         })
       }).then(function (response) {
-        return console.log(response);
+        _this.purchase = false;
+        _this.response = response.data.message;
+
+        _this.$parent.$emit('fresh');
       })["catch"](function (error) {
         return console.log(error);
       });
+    },
+    removeOrder: function removeOrder(index) {
+      this.$parent.$emit('remove', index);
     }
   }
 });
@@ -37260,7 +37288,7 @@ var render = function() {
               on: {
                 click: function($event) {
                   $event.preventDefault()
-                  _vm.currentTab = link.link
+                  return _vm.route(link.link)
                 }
               }
             },
@@ -37315,57 +37343,80 @@ var render = function() {
     [
       _c("h1", [_vm._v("Cart")]),
       _vm._v(" "),
-      _c("div", { staticClass: "flex" }, [
-        _c(
-          "div",
-          { staticClass: "orders" },
-          _vm._l(_vm.orders, function(order, id) {
-            return _c("div", { key: id, staticClass: "preview" }, [
-              _c("div", { staticClass: "img" }, [
-                _c("img", {
-                  attrs: {
-                    src: order.product.path[order.color],
-                    alt: "Product"
-                  }
-                }),
-                _vm._v(" "),
-                _c("img", {
-                  staticClass: "thumb",
-                  attrs: { src: order.symbol.path, alt: "Symbol" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "info" }, [
-                _c("p", { staticClass: "info-name" }, [
-                  _vm._v(_vm._s(order.product.name))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "info-price" }, [
-                  _vm._v("$" + _vm._s(order.product.price))
+      _vm.orders.length > 0
+        ? _c("div", { staticClass: "flex" }, [
+            _c(
+              "div",
+              { staticClass: "orders" },
+              _vm._l(_vm.orders, function(order, index) {
+                return _c("div", { key: index, staticClass: "preview" }, [
+                  _c("div", { staticClass: "img" }, [
+                    _c("img", {
+                      attrs: {
+                        src: order.product.path[order.color.name],
+                        alt: "Product"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "thumb",
+                      attrs: { src: order.symbol.path, alt: "Symbol" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "info" }, [
+                    _c("p", { staticClass: "info-name" }, [
+                      _vm._v(_vm._s(order.product.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "info-price" }, [
+                      _vm._v("Color: " + _vm._s(order.color.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "info-price" }, [
+                      _vm._v("$" + _vm._s(order.product.price))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "delete",
+                        on: {
+                          click: function($event) {
+                            return _vm.removeOrder(index)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  ])
                 ])
-              ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "purchase" }, [
+              _c("h2", [_vm._v("Total price: $" + _vm._s(_vm.total))]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "go",
+                  on: {
+                    click: function($event) {
+                      _vm.purchase = true
+                    }
+                  }
+                },
+                [_vm._v("Purchase")]
+              )
             ])
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "purchase" }, [
-          _c("h2", [_vm._v("Total price: $" + _vm._s(_vm.total))]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "go",
-              on: {
-                click: function($event) {
-                  _vm.purchase = true
-                }
-              }
-            },
-            [_vm._v("Purchase")]
-          )
-        ])
-      ]),
+          ])
+        : _c("div", [
+            _c("h3", { staticClass: "center" }, [
+              _vm._v("No items in cart yet...")
+            ])
+          ]),
       _vm._v(" "),
       _vm.purchase ? _c("div", { staticClass: "overlay" }) : _vm._e(),
       _vm._v(" "),
@@ -37393,31 +37444,6 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.contact.lastname,
-                        expression: "contact.lastname"
-                      }
-                    ],
-                    attrs: {
-                      type: "text",
-                      placeholder: "Last name",
-                      required: ""
-                    },
-                    domProps: { value: _vm.contact.lastname },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.contact, "lastname", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
                         value: _vm.contact.firstname,
                         expression: "contact.firstname"
                       }
@@ -37434,6 +37460,31 @@ var render = function() {
                           return
                         }
                         _vm.$set(_vm.contact, "firstname", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.contact.lastname,
+                        expression: "contact.lastname"
+                      }
+                    ],
+                    attrs: {
+                      type: "text",
+                      placeholder: "Last name",
+                      required: ""
+                    },
+                    domProps: { value: _vm.contact.lastname },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.contact, "lastname", $event.target.value)
                       }
                     }
                   }),
@@ -37486,7 +37537,13 @@ var render = function() {
               )
             ])
           : _vm._e()
-      ])
+      ]),
+      _vm._v(" "),
+      _vm.response
+        ? _c("div", { staticClass: "success" }, [
+            _vm._v(" " + _vm._s(_vm.response))
+          ])
+        : _vm._e()
     ],
     1
   )
@@ -37523,7 +37580,7 @@ var render = function() {
         "div",
         { staticClass: "symbols" },
         _vm._l(_vm.symbols, function(symbol) {
-          return _c("label", { key: symbol.name }, [
+          return _c("label", { key: symbol.id }, [
             _c("input", {
               directives: [
                 {
@@ -37592,7 +37649,7 @@ var render = function() {
                             "order.product === null || order.product == product"
                         }
                       ],
-                      key: product.name,
+                      key: product.id,
                       staticClass: "preview"
                     },
                     [
@@ -37628,7 +37685,7 @@ var render = function() {
                       _c("div", { staticClass: "img" }, [
                         _c("img", {
                           attrs: {
-                            src: product.path[_vm.order.color],
+                            src: product.path[_vm.order.color.name],
                             alt: "Product"
                           }
                         }),
@@ -37655,7 +37712,7 @@ var render = function() {
                       "div",
                       { staticClass: "colors" },
                       _vm._l(_vm.colors, function(color) {
-                        return _c("label", { key: color }, [
+                        return _c("label", { key: color.id }, [
                           _c("input", {
                             directives: [
                               {
@@ -37676,7 +37733,7 @@ var render = function() {
                               }
                             }
                           }),
-                          _vm._v(_vm._s(color) + "\n                    ")
+                          _vm._v(_vm._s(color.name) + "\n                    ")
                         ])
                       }),
                       0

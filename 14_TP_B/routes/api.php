@@ -1,10 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Color;
-use App\Product;
-use App\NavItem;
-use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,21 +16,8 @@ use Illuminate\Support\Facades\Storage;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('colors', function() {
-	return Color::all()->pluck('name');
-});
-Route::get('products', function() {
-	return Product::all();
-});
-Route::get('links', function() {
-	return NavItem::all();
-});
-Route::get('symbols', function() {
-	return array_map(function($file) {
-		return [
-			'name' => $file,
-			'path' => asset('storage/app/public/'.$file)
-		];
-	}, Storage::disk('public')->files('symbols'));
-});
-Route::post('orders', 'Api\OrderController@store');
+Route::get('colors', 'ColorController@index');
+Route::get('links', 'NavController@index');
+Route::get('symbols', 'SymbolController@index');
+Route::get('products', 'ProductController@index');
+Route::post('orders', 'OrderController@store');

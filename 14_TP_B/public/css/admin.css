@@ -1,0 +1,177 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Open Sans, Arial;
+    font-weight: normal;
+    color: #333;
+}
+.row {
+    max-width: 80%;
+}
+ul, li {
+    list-style: none;
+}
+a {
+	text-decoration: none;
+	display: block;
+	color: #333;
+}
+nav ul {
+	border-bottom: 1px solid #aaa;
+	display: flex;
+	padding: 0 8%;
+	justify-content: space-around;
+	margin: 0 20px;
+}
+nav a {
+	position: relative;
+	font-size: 20px;
+	padding: 15px;
+}
+nav a:hover {
+	opacity: 0.8;
+}
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+.product-list {
+	display: flex;
+}
+h1 {
+	margin: 0 0 20px 0;
+	padding: 20px;
+	text-align: center;
+	border-bottom: 1px solid #aaa;
+}
+aside {
+    margin-top: 77px;
+}
+aside form {
+    padding: 20px;;
+}
+h2 {
+    text-align: center;
+}
+input, select {
+    display: block;
+    padding: 7px;
+    margin: 10px 0;
+    font-size: 16px;
+    width: 100%;
+}
+input.filter {
+    display: block;
+	outline: none;
+	border: none;
+	margin: 20px auto;
+	padding: 10px;
+	color: #fff;
+	background: #536abd;
+	font-size: 18px;
+    box-shadow: 1px 2px 3px #aaa;
+    cursor: pointer;
+}
+.product-list li {
+	padding: 30px 50px 30px 0;	
+    border: none;
+    width: auto;
+    height: auto;
+}
+.product-list li .img {
+    height: 250px;
+	width: 250px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    position: relative;
+}
+.thumb {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+}
+.preview p {
+	text-indent: 20px;
+	padding: 5px;
+}
+.info {
+	margin: 15px;
+}
+.contacts {
+    margin: 15px;
+}
+.contacts p {
+    padding: 5px;
+    white-space: pre-line;
+}
+
+.order-list .status {
+    display: block;
+    widows: 200px;
+    margin: 10px;
+    line-height: 1.5em;
+}
+textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 10px;
+}
+.links li {
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+.links li:hover {
+    background: #eee;
+}
+.auto {
+    margin: auto;
+    float: none;
+}
+.order-list > a > li {
+    margin: 30px;
+    border-bottom: 1px solid #ddd;
+}
+strong {
+    font-size: 1.4em;
+}
+.pagination {
+    display: flex;
+}
+.page-item {
+    padding: 5px 10px;
+    margin: 5px;
+    border: 1px solid #aaa;
+}
+.page-item.active {
+    background: #9bb0fb;
+}
+.disabled {
+    opacity: 0.8;
+}
+.symbols {
+    display: flex;
+    justify-content: center;
+	flex-wrap: wrap;
+}
+.symbols li {
+    display: flex;
+    height: 170px;
+    padding: 20px;
+}
+.symbols li .buttons {
+    margin-left: 30px;
+}
+.symbols li a {
+    display: block;
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #aaa;
+    font-size: 0.9em;
+}
+.delete {
+    background: #f3bbbb;
+}

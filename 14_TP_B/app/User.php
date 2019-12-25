@@ -16,8 +16,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'password',
     ];
+
+    public $timestamps = false;
 
     /**
      * The attributes that should be hidden for arrays.
@@ -33,7 +35,4 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 }
