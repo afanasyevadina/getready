@@ -20,17 +20,17 @@
             <li>
                 <div class="img">
                     <img class="placeholder" src="{{ $item->product->path[$item->color->name] }}" alt="">
-                    <img src="{{ $item->symbol->path }}" class="thumb"/>
+                    <img src="{{ $item->symbol !== null ? $item->symbol->path : '' }}" class="thumb"/>
                 </div>
                 <div class="info">
-                    <p>Product ID: {{ $item->product_id }}</p>
+                    <p>Product ID: {{ $item->product_id }} ({{ $item->product->name}})</p>
                     <p>Price: ${{ $item->product->price }}</p>
-                    <p>Color ID: {{ $item->color_id }}</p>
+                    <p>Color ID: {{ $item->color_id }} ({{ $item->color->name}})</p>
                 </div>
             </li>
             @endforeach
         </ul>
-        <form action="{{ action('OrderController@update', ['id' => $order->id]) }}" method="POST">
+        <form action="{{ action('OrderController@update', ['id' => $order->id]) }}" method="POST" class="update-order">
             @csrf
             <label>
             Remarks<br>

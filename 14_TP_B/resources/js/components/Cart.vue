@@ -21,6 +21,7 @@
                 <button class="go" @click="purchase = true">Purchase</button>
             </div>
         </div>
+        <div v-else-if="response" class="success"> {{ response }}</div>
         <div v-else>
             <h3 class="center">No items in cart yet...</h3>
         </div>
@@ -39,7 +40,6 @@
                 </form>
             </div>
         </transition>
-        <div v-if="response" class="success"> {{ response }}</div>
     </div>
 </template>
 

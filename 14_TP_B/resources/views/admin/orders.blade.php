@@ -17,7 +17,7 @@
                             <li>
                                 <div class="img">
                                     <img class="placeholder" src="{{ $item->product->path[$item->color->name] }}" alt="">
-                                    <img src="{{ $item->symbol->path }}" class="thumb"/>
+                                    <img src="{{ $item->symbol !== null ? $item->symbol->path : '' }}" class="thumb"/>
                                 </div>
                             </li>
                         @endforeach

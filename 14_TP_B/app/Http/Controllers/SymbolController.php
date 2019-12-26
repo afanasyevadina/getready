@@ -10,12 +10,12 @@ class SymbolController extends Controller
 {
     public function index()
     {
-        return Symbol::where('disabled', null)->get();
+        return Symbol::where('disabled', null)->orderBy('id', 'desc')->get();
     }
 
     public function edit()
     {
-        return view('admin.symbols', ['symbols' => Symbol::all()]);
+        return view('admin.symbols', ['symbols' => Symbol::orderBy('id', 'desc')->get()]);
     }
 
     public function update($id)

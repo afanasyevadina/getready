@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <main class="small-4 medium-3 col auto">
+    <h3>Reorder nav items by drag and drop</h3>
     <form action="nav" method="POST">
         @csrf
         <ul class="links">
@@ -28,17 +29,17 @@
             e.dataTransfer.dropEffect = "move"
         })
         item.addEventListener("dragenter", function(e) {
-            this.style.border = "1px solid #333"
+            this.classList.add("enter")
             to = this
         })
         item.addEventListener("dragleave", function(e) {
-            this.style.border = "none"
+            this.classList.remove("enter")
         })
         item.addEventListener("dragend", function(e) {
             let temp = to.innerHTML
             to.innerHTML = from.innerHTML
             from.innerHTML = temp
-            to.style.border = "none"
+            to.classList.remove("enter")
         })
     })
 </script>

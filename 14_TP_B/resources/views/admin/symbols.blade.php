@@ -3,7 +3,9 @@
 <main class="small-4 medium-3 col auto">
     <form action="symbols" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="file" name="symbols[]" accept="*.png" multiple>
+        <label>
+            <input type="file" name="symbols[]" accept="*.png" multiple required>
+        </label>
         <input type="submit" value="Upload">
     </form>
     <ul class="symbols">

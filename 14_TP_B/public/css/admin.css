@@ -123,6 +123,15 @@ textarea {
     padding: 10px;
     cursor: pointer;
     user-select: none;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.links li:first-child {
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+}
+.links li.enter {
+    border: 1px solid #444;
 }
 .links li:hover {
     background: #eee;
@@ -131,9 +140,13 @@ textarea {
     margin: auto;
     float: none;
 }
-.order-list > a > li {
-    margin: 30px;
+.order-list > a {
+    padding: 30px;
     border-bottom: 1px solid #ddd;
+    transition: .4s;
+}
+.order-list > a:hover {
+    background: #f5f5f5;
 }
 strong {
     font-size: 1.4em;
@@ -160,7 +173,10 @@ strong {
 .symbols li {
     display: flex;
     height: 170px;
+    width: 270px;
     padding: 20px;
+    border: 1px solid #ccc;
+    margin: 5px;
 }
 .symbols li .buttons {
     margin-left: 30px;
@@ -174,4 +190,13 @@ strong {
 }
 .delete {
     background: #f3bbbb;
+}
+.update-order input[type=radio] {
+    display: inline-block;
+    margin: 0 10px;
+    width: auto;
+}
+.update-order label {
+    display: block;
+    padding: 10px 0;
 }

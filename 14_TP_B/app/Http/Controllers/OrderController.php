@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\OrderItem;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -16,7 +17,7 @@ class OrderController extends Controller
         $status = \Request::get('status');
         $orders = Order::where('id', '>', 0);
         if($from) $orders->where('created_at', '>=', $from);
-        if($to) $orders->where('created_at', '<=', $to);
+        if($to) $orders->where('created_at', '<', Carbon::parse($to)->addDays(1)->format('Y-m-d'));
         if($status) $orders->where('status', $status);
         return view('admin.orders', ['orders' => $orders->paginate(20)]);
     }

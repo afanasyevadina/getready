@@ -12,6 +12,6 @@ class Symbol extends Model
     protected $appends = ['path'];
     public function getPathAttribute()
     {
-        return asset('public/storage/'.$this->filename);
+        return asset('storage/app/public/'.$this->filename);
     }
 }
