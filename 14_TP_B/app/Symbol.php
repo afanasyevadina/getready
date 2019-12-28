@@ -10,6 +10,8 @@ class Symbol extends Model
 
     protected $hidden = ['filename'];
     protected $appends = ['path'];
+
+    //returns absolute path
     public function getPathAttribute()
     {
         return asset('storage/app/public/'.$this->filename);

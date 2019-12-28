@@ -2,8 +2,10 @@
     <div class="container">
         <h1>Cart</h1>
         <div class="flex" v-if="orders.length > 0">
+            <!-- List of items -->
             <div class="orders">
                 <div v-for="(order, index) in orders" :key="index" class="preview">
+                    <!-- Preview of delivery -->
                     <div class="img">
                         <img :src="order.product.path[order.color.name]" alt="Product" />
                         <img :src="order.symbol.path" alt="Symbol" class="thumb" />
@@ -12,6 +14,7 @@
                         <p class="info-name">{{ order.product.name }}</p>
                         <p class="info-price">Color: {{ order.color.name }}</p>
                         <p class="info-price">${{ order.product.price }}</p>
+                        <!-- Allows to delete item from cart -->
                         <button class="delete" @click="removeOrder(index)">Delete</button>
                     </div>
                 </div>
@@ -21,10 +24,13 @@
                 <button class="go" @click="purchase = true">Purchase</button>
             </div>
         </div>
+        <!-- Shows where success -->
         <div v-else-if="response" class="success"> {{ response }}</div>
+        <!-- If cart is empty -->
         <div v-else>
             <h3 class="center">No items in cart yet...</h3>
         </div>
+        <!-- Modal dialog with contact form -->
         <div v-if="purchase" class="overlay"></div>
         <transition>
             <div v-if="purchase" class="dialog auto">
@@ -45,11 +51,14 @@
 
 <script>
     export default {
+        //receive orders from parent
         props: ['orders'],
         data: function() {
             return {
+                //state variables
                 purchase: false,
                 response: false,
+                //client info
                 contact: {
                     lastname: '',
                     firstname: '',
@@ -58,6 +67,7 @@
             }
         },
         computed: {
+            //total price of order
             total: function() {
                 var sum = 0
                 this.orders.forEach(element => {
@@ -67,6 +77,7 @@
             }
         },
         methods: {
+            //place pre-order
             send: function() {
                 axios.post('api/orders', {
                     total: this.total,
@@ -80,8 +91,10 @@
                     })
                 })
                 .then(response => {
+                    //show message
                     this.purchase = false
                     this.response = response.data.message
+                    //clear cart
                     this.$parent.$emit('fresh')
                 })
                 .catch(error => console.log(error))

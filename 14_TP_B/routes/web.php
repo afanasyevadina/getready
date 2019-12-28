@@ -14,7 +14,6 @@
 Route::get('/', function () {
     return view('index');
 });
-Route::get('cart.php', 'CartController@index');
 
 Auth::routes();
 

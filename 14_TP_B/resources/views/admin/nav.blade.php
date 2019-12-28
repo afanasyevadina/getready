@@ -17,26 +17,27 @@
 </main>
 <script type="text/javascript">
     var items = document.querySelectorAll('[draggable')
-    var from = {}
-    var to = {}
+    var from = {} //source
+    var to = {} //destination
+
     items.forEach(function(item) {
         item.addEventListener("dragstart", function(e) {
             e.dataTransfer.effectAllowed = "move"
-            from = this
+            from = this //item started
         })
         item.addEventListener("dragover", function(e) {
             e.preventDefault()
-            e.dataTransfer.dropEffect = "move"
+            e.dataTransfer.dropEffect = "move" //visual effect
         })
         item.addEventListener("dragenter", function(e) {
             this.classList.add("enter")
-            to = this
+            to = this //allows to drop
         })
         item.addEventListener("dragleave", function(e) {
             this.classList.remove("enter")
         })
         item.addEventListener("dragend", function(e) {
-            let temp = to.innerHTML
+            let temp = to.innerHTML //replace content of items
             to.innerHTML = from.innerHTML
             from.innerHTML = temp
             to.classList.remove("enter")

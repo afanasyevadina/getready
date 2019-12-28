@@ -10,8 +10,10 @@ use Carbon\Carbon;
 
 class OrderController extends Controller
 {
+    //for admin
     public function index()
     {
+        //filter by date and status
         $from = \Request::get('from');
         $to = \Request::get('to');
         $status = \Request::get('status');
@@ -28,6 +30,8 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //from API
     public function store(Request $request)
     {
         $order = Order::create($request->get('contact'));
@@ -44,11 +48,13 @@ class OrderController extends Controller
         ];
     }
 
+    //order details page
     public function view($id)
     {
         return view('admin.order', ['order' => Order::find($id)]);
     }
 
+    //set status and add remarks
     public function update(Request $request, $id)
     {
         $order = Order::find($id);

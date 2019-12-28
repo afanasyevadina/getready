@@ -8,11 +8,13 @@ use App\Symbol;
 
 class SymbolController extends Controller
 {
+    //for API show only enable symbols
     public function index()
     {
         return Symbol::where('disabled', null)->orderBy('id', 'desc')->get();
     }
 
+    //for admin
     public function edit()
     {
         return view('admin.symbols', ['symbols' => Symbol::orderBy('id', 'desc')->get()]);
@@ -26,6 +28,7 @@ class SymbolController extends Controller
         return back();
     }
 
+    //upload new symbols
     public function store(Request $request)
     {
         foreach($request->file('symbols') as $file) {

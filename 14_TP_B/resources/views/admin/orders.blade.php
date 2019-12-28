@@ -2,6 +2,7 @@
 @section('content')
 <main class="small-4 medium-3 col">
     <h1>Pre-Orders</h1>
+    <!-- pagination -->
     {{ $orders->render() }}
     <ol class="order-list">
         @foreach($orders as $order)
@@ -15,6 +16,7 @@
                     <ul class="product-list">
                         @foreach($order->items as $item)
                             <li>
+                                <!-- preview -->
                                 <div class="img">
                                     <img class="placeholder" src="{{ $item->product->path[$item->color->name] }}" alt="">
                                     <img src="{{ $item->symbol !== null ? $item->symbol->path : '' }}" class="thumb"/>

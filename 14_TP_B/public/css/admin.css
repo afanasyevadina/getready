@@ -1,3 +1,4 @@
+/*Default styles */
 * {
 	margin: 0;
 	padding: 0;
@@ -17,6 +18,7 @@ a {
 	display: block;
 	color: #333;
 }
+/* navbar */
 nav ul {
 	border-bottom: 1px solid #aaa;
 	display: flex;
@@ -32,6 +34,7 @@ nav a {
 nav a:hover {
 	opacity: 0.8;
 }
+/*main area*/
 img {
 	max-width: 100%;
 	max-height: 100%;
@@ -45,6 +48,7 @@ h1 {
 	text-align: center;
 	border-bottom: 1px solid #aaa;
 }
+/*filters*/
 aside {
     margin-top: 77px;
 }
@@ -73,6 +77,7 @@ input.filter {
     box-shadow: 1px 2px 3px #aaa;
     cursor: pointer;
 }
+/*pre-orders*/
 .product-list li {
 	padding: 30px 50px 30px 0;	
     border: none;
@@ -114,11 +119,29 @@ input.filter {
     margin: 10px;
     line-height: 1.5em;
 }
+.order-list > a {
+    padding: 30px;
+    border-bottom: 1px solid #ddd;
+    transition: .4s;
+}
+.order-list > a:hover {
+    background: #f5f5f5;
+}
 textarea {
     width: 100%;
     resize: vertical;
     padding: 10px;
 }
+.update-order input[type=radio] {
+    display: inline-block;
+    margin: 0 10px;
+    width: auto;
+}
+.update-order label {
+    display: block;
+    padding: 10px 0;
+}
+/*links managenent page*/
 .links li {
     padding: 10px;
     cursor: pointer;
@@ -140,24 +163,20 @@ textarea {
     margin: auto;
     float: none;
 }
-.order-list > a {
-    padding: 30px;
-    border-bottom: 1px solid #ddd;
-    transition: .4s;
-}
-.order-list > a:hover {
-    background: #f5f5f5;
-}
 strong {
     font-size: 1.4em;
 }
+/*styles for default pagination*/
 .pagination {
     display: flex;
 }
 .page-item {
-    padding: 5px 10px;
     margin: 5px;
     border: 1px solid #aaa;
+}
+.page-item * {
+    display: block;
+    padding: 5px 10px;
 }
 .page-item.active {
     background: #9bb0fb;
@@ -165,6 +184,7 @@ strong {
 .disabled {
     opacity: 0.8;
 }
+/*symbols page*/
 .symbols {
     display: flex;
     justify-content: center;
@@ -188,17 +208,11 @@ strong {
     border: 1px solid #aaa;
     font-size: 0.9em;
 }
+.symbols img.disabled {
+    opacity: 0.5;
+}
 .delete {
     background: #f3bbbb;
-}
-.update-order input[type=radio] {
-    display: inline-block;
-    margin: 0 10px;
-    width: auto;
-}
-.update-order label {
-    display: block;
-    padding: 10px 0;
 }
 .file-input {
     display: block;

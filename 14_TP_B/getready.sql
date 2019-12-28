@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 26 2019 г., 09:29
+-- Время создания: Дек 28 2019 г., 07:34
 -- Версия сервера: 5.6.37
 -- Версия PHP: 7.1.7
 
@@ -63,8 +63,8 @@ INSERT INTO `nav_items` (`id`, `name`, `link`, `order_num`) VALUES
 (1, 'Home', '/', 1),
 (2, 'Cart', 'cart.php', 2),
 (3, 'Design Symbols', '#', 3),
-(4, 'T-Shirts', '#', 5),
-(5, 'Accessories', '#', 4),
+(4, 'T-Shirts', '#', 4),
+(5, 'Accessories', '#', 5),
 (6, 'Admin Area', 'admin.php', 6);
 
 -- --------------------------------------------------------
@@ -90,8 +90,30 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `firstname`, `lastname`, `email`, `created_at`, `updated_at`, `status`, `remarks`, `total`) VALUES
-(1, 'qwe', 'qqw', 'wer@qw.er', '2019-12-26 06:28:38', '2019-12-26 06:28:38', 'Open', NULL, 25),
-(2, 'jm', 'jmhy', 'rmjyhm@hvgj.gh', '2019-12-26 06:29:01', '2019-12-26 06:29:01', 'Open', NULL, 62);
+(1, 'Nelly', 'Raise', 'nelly@mail.ru', '2019-12-28 04:05:55', '2019-12-28 04:33:11', 'Prepared', '\nhello', 37),
+(2, 'Vika', 'Kim', 'kim@google.com', '2019-12-28 04:06:22', '2019-12-28 04:06:22', 'Open', NULL, 25),
+(3, 'Alex', 'Len', 'len@mail.com', '2019-12-28 04:07:03', '2019-12-28 04:33:29', 'Prepared', '\nasdf', 50),
+(4, 'Ray', 'Sim', 'sim@gmail.com', '2019-12-28 04:07:44', '2019-12-28 04:33:47', 'Closed/Delivered', '\n\nready!', 12),
+(5, 'Maria', 'Toy', 'toy@gmail.com', '2019-12-28 04:08:14', '2019-12-28 04:08:14', 'Open', NULL, 37),
+(6, 'Andrea', 'Li', 'li@gmail.com', '2019-12-28 04:08:58', '2019-12-28 04:08:58', 'Open', NULL, 62),
+(7, 'Aibek', 'Kari', 'kari@gmail.com', '2019-12-28 04:09:35', '2019-12-28 04:09:35', 'Open', NULL, 25),
+(8, 'Liam', 'Stan', 'stam@gmail.com', '2019-12-28 04:10:07', '2019-12-28 04:10:07', 'Open', NULL, 12),
+(9, 'Raina', 'Ellish', 'ellish@gmail.com', '2019-12-28 04:14:47', '2019-12-28 04:14:47', 'Open', NULL, 25),
+(10, 'Maraiam', 'Weese', 'weese@gmail.com', '2019-12-28 04:15:13', '2019-12-28 04:15:13', 'Open', NULL, 12),
+(11, 'Harry', 'Williams', 'williams@gmail.com', '2019-12-28 04:15:41', '2019-12-28 04:15:41', 'Open', NULL, 25),
+(12, 'Luna', 'Wood', 'wood@gmail.com', '2019-12-28 04:16:17', '2019-12-28 04:16:17', 'Open', NULL, 37),
+(13, 'Rain', 'Pix', 'pix@gmail.com', '2019-12-28 04:17:41', '2019-12-28 04:17:41', 'Open', NULL, 62),
+(14, 'Navy', 'Ella', 'ella@navi.com', '2019-12-28 04:19:11', '2019-12-28 04:19:11', 'Open', NULL, 36),
+(15, 'Loose', 'Goose', 'loose@gmail.com', '2019-12-28 04:19:34', '2019-12-28 04:19:34', 'Open', NULL, 12),
+(16, 'White', 'Queen', 'white@gmail.com', '2019-12-28 04:19:55', '2019-12-28 04:19:55', 'Open', NULL, 25),
+(17, 'Enable', 'Annable', 'ann@gmail.com', '2019-12-28 04:20:24', '2019-12-28 04:20:24', 'Open', NULL, 12),
+(18, 'Blue', 'Cap', 'blue@gmail.com', '2019-12-28 04:20:54', '2019-12-28 04:20:54', 'Open', NULL, 12),
+(19, 'Im', 'Cool', 'cool@gmail.com', '2019-12-28 04:21:18', '2019-12-28 04:21:18', 'Open', NULL, 37),
+(20, 'Happy', 'Tea', 'tea@gmail.com', '2019-12-28 04:21:47', '2019-12-28 04:21:47', 'Open', NULL, 24),
+(21, 'Axios', 'Get', 'get@gmail.com', '2019-12-28 04:22:21', '2019-12-28 04:22:21', 'Open', NULL, 37),
+(22, 'Try', 'Angle', 'try@gmail.com', '2019-12-28 04:22:42', '2019-12-28 04:22:42', 'Open', NULL, 25),
+(23, 'Jane', 'Coffee', 'coffee@gmail.com', '2019-12-28 04:23:14', '2019-12-28 04:23:14', 'Open', NULL, 37),
+(24, 'Maina', 'Kris', 'kris@gmail.com', '2019-12-28 04:32:24', '2019-12-28 04:32:24', 'Open', NULL, 37);
 
 -- --------------------------------------------------------
 
@@ -112,10 +134,45 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `symbol_id`, `product_id`, `color_id`) VALUES
-(1, 1, 2, 1, 1),
-(2, 2, 8, 1, 1),
-(3, 2, 5, 2, 3),
-(4, 2, 13, 1, 2);
+(1, 1, 1, 2, 2),
+(2, 1, 7, 1, 2),
+(3, 2, 11, 1, 1),
+(4, 3, 12, 1, 3),
+(5, 3, 5, 1, 2),
+(6, 4, 12, 2, 1),
+(7, 5, 12, 1, 1),
+(8, 5, 10, 2, 1),
+(9, 6, 4, 2, 3),
+(10, 6, 1, 1, 1),
+(11, 6, 10, 1, 1),
+(12, 7, 3, 1, 2),
+(13, 8, 9, 2, 1),
+(14, 9, 12, 1, 2),
+(15, 10, 1, 2, 1),
+(16, 11, 6, 1, 1),
+(17, 12, 8, 1, 3),
+(18, 12, 4, 2, 1),
+(19, 13, 8, 1, 3),
+(20, 13, 4, 2, 1),
+(21, 13, 5, 1, 2),
+(22, 14, 2, 2, 1),
+(23, 14, 12, 2, 1),
+(24, 14, 1, 2, 1),
+(25, 15, 5, 2, 1),
+(26, 16, 12, 1, 1),
+(27, 17, 11, 2, 2),
+(28, 18, 2, 2, 2),
+(29, 19, 3, 2, 1),
+(30, 19, 4, 1, 3),
+(31, 20, 12, 2, 2),
+(32, 20, 1, 2, 2),
+(33, 21, 5, 2, 2),
+(34, 21, 3, 1, 1),
+(35, 22, 2, 1, 2),
+(36, 23, 1, 2, 2),
+(37, 23, 9, 1, 1),
+(38, 24, 4, 2, 1),
+(39, 24, 12, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -155,18 +212,18 @@ CREATE TABLE `symbols` (
 --
 
 INSERT INTO `symbols` (`id`, `name`, `filename`, `disabled`) VALUES
-(1, 'iconmonstr-american-football-2-240', 'symbols/rDemhnD0ZTzHUtsXeKLm1G0xrCq5HzPBnYgDGV3Q.png', NULL),
-(2, 'iconmonstr-basketball-2-240', 'symbols/ffb0ryLd6jLRnce2omtxQYYfvPOVB1mmz3CWAAaY.png', NULL),
-(3, 'iconmonstr-candy-24-240', 'symbols/CwjhzAYVx4arYKRUWTeITkeJQhBCQFaJ91xXyf4n.png', NULL),
-(4, 'iconmonstr-construction-14-240', 'symbols/9JLF7zCTYLjADh7XOSm3AbPiLRNb696T8aZx3Ab6.png', NULL),
-(5, 'iconmonstr-construction-17-240', 'symbols/NWJSWuHUMGdm9QSdruJBTwsiZoNdKVZcLaaSAOfm.png', NULL),
-(6, 'iconmonstr-control-panel-23-240', 'symbols/oC3PMUtoWNqmefq2UPbCLdvHvsfp3blrjHJTv8Nk.png', NULL),
-(7, 'iconmonstr-crown-19-240', 'symbols/6mktB6RXMaghtBFfy9ftR6eHQqctDlmcdcUh7qAx.png', NULL),
-(8, 'iconmonstr-fast-food-18-240', 'symbols/WThKOlZPXvJb3xyqS4PanJkQ2bKC3D30XKeTr76Z.png', NULL),
-(9, 'iconmonstr-keyboard-15-240', 'symbols/yerQBqRTdKtB3ohYFnWqomnfVYz2cdb4LaWPbAL6.png', NULL),
-(11, 'iconmonstr-trash-can-28-240', 'symbols/Ep8SBHJ8x0v6E6gpwEc1Kx79emTLnVFIFmbipHjf.png', NULL),
-(12, 'iconmonstr-umbrella-15-240', 'symbols/Og841FeyQvknUXhI0oifvKm9EDU6c7fGYAudmv6j.png', NULL),
-(13, 'iconmonstr-marketing-4-240', 'symbols/hbp5rMo80WACE9L0Rt0nwHqM05NPlCEPzQKuJW2k.png', NULL);
+(1, 'iconmonstr-fast-food-18-240', 'symbols/PPZ84mDg8pBdjW9yiCoWdrGQJdDkabEwAOv4366g.png', NULL),
+(2, 'iconmonstr-keyboard-15-240', 'symbols/jAICf16IH3vp1jWzuDw4cuQxa42tpZjOQq33cPVX.png', NULL),
+(3, 'iconmonstr-marketing-4-240', 'symbols/bhNbiJeOaec0vXEixZzmYJ4f942JKwVBdLSHVGbX.png', NULL),
+(4, 'iconmonstr-trash-can-28-240', 'symbols/32kfmVbSZ57I8KJ1f3dL8Hx61nQi5mEA6FzhM4ux.png', NULL),
+(5, 'iconmonstr-umbrella-15-240', 'symbols/FGLj6Tt1mFWUZsPNF0cCDfiHEiYrmvufS4IoST0j.png', NULL),
+(6, 'iconmonstr-american-football-2-240', 'symbols/ikP0feSN7yFNUZkptR4uNzvPG2WttoWtqsplvGAO.png', NULL),
+(7, 'iconmonstr-basketball-2-240', 'symbols/MF91WnPUIBUBfzTb2AngWIRorZAHaUMEPhzyaiFk.png', NULL),
+(8, 'iconmonstr-candy-24-240', 'symbols/Hi9rIMRyvOdQNT5tu5q7FaLBgHRXHiumLZGYuxsP.png', NULL),
+(9, 'iconmonstr-construction-14-240', 'symbols/3mwL2TBx1SpRooQR10kZeCzZyK34QxTLejSLMAwS.png', NULL),
+(10, 'iconmonstr-construction-17-240', 'symbols/oXfG19pWLo89wYrTUrHXrZFCcbyWKKguaBUrTfET.png', NULL),
+(11, 'iconmonstr-control-panel-23-240', 'symbols/LnYIOvTpXbMaoFXjybOSlSOS5vFPjioFIUa8DjBl.png', NULL),
+(12, 'iconmonstr-crown-19-240', 'symbols/GShRkJ60wqHjWQFql4005EE2JvsLhmuJg1gPBNdl.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -186,7 +243,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `remember_token`) VALUES
-(1, 'shopadmin', '$2y$10$p/pkRPUrDwWR5g5pZSwnF.6Yp6Q9wKrHUKkUGvgCQYS8RiP66Hi9W', 'SiAMM8JyvpUev59kDTZ1pZCISeYS50Mkl9Hi0eqM9RhxxMH9OzVVSjK2t5GE');
+(1, 'shopadmin', '$2y$10$p/pkRPUrDwWR5g5pZSwnF.6Yp6Q9wKrHUKkUGvgCQYS8RiP66Hi9W', 'UhkqJELkzixJNyIezBBlrLHubCuthvcGTZW4rRPsvV3u4QGRf5SrrHoOXkDP');
 
 --
 -- Индексы сохранённых таблиц
@@ -256,12 +313,12 @@ ALTER TABLE `nav_items`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT для таблицы `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
@@ -271,7 +328,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT для таблицы `symbols`
 --
 ALTER TABLE `symbols`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --

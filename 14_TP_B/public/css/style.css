@@ -1,3 +1,4 @@
+/*default*/
 * {
 	margin: 0;
 	padding: 0;
@@ -12,6 +13,7 @@ a {
 	font-size: 20px;
 	padding: 15px;
 }
+/*header*/
 header {
 	border-bottom: 1px solid #aaa;
 	display: flex;
@@ -26,6 +28,7 @@ header a {
 a:hover {
 	opacity: 0.8;
 }
+/*home page*/
 .container {
 	width: 80%;
 	margin: 20px auto;
@@ -61,6 +64,7 @@ img {
 	transform: scale(1.05);
 	box-shadow: 2px 3px 5px #aaa;
 }
+/*transition of modal dialog*/
 .dialog-enter {
 	opacity: 0;
 }
@@ -125,6 +129,7 @@ h1 {
 .preview {
 	padding: 30px;
 }
+/*preview of final delivery*/
 .preview .img {
 	height: 250px;
 	width: 250px;
@@ -164,6 +169,7 @@ button.go:hover {
 button.go:active {
 	transform: translateY(1px);
 }
+/*counter*/
 .badge {
 	display: block;
 	padding: 2px 5px;
@@ -207,6 +213,7 @@ button.go:active {
 .auto {
 	width: auto;
 }
+/*form*/
 .contact > * {
 	display: block;
 	width: 100%;
@@ -247,6 +254,7 @@ button.go:active {
 	bottom: 40px;
 	right: 30px;
 }
+/*success alert*/
 .success {
 	padding: 40px;
 	background: #93f19a;

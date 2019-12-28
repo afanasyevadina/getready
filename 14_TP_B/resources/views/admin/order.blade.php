@@ -4,12 +4,14 @@
         <h1>Order Detail for #ORDER {{ $order->id }}</h1>
     
         <ol class="status-bar">
+            <!-- highlight current status -->
           <li class="{{ $order->status == 'Open' ? 'active': '' }}">Opened</li>
           <li class="{{ $order->status == 'Prepared' ? 'active': '' }}">Prepared</li>
           <li class="{{ $order->status == 'Closed/Delivered' ? 'active': '' }}">Closed/Delivered</li>
         </ol>
     
         <div class="contacts">
+            <!-- order info -->
             <p>First Name: {{ $order->firstname }}</p>
             <p>Last Name: {{ $order->lastname }}</p>
             <p>E-mail: {{ $order->email }}</p>
@@ -18,6 +20,7 @@
         <ul class="product-list">
             @foreach($order->items as $item)
             <li>
+                <!-- preview -->
                 <div class="img">
                     <img class="placeholder" src="{{ $item->product->path[$item->color->name] }}" alt="">
                     <img src="{{ $item->symbol !== null ? $item->symbol->path : '' }}" class="thumb"/>
@@ -36,6 +39,7 @@
             Remarks<br>
             <textarea name="remarks"></textarea>
             </label>
+            <!-- show available status -->
             @if($order->status != 'Closed/Delivered')        
             <p>
                 Status<br>

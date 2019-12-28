@@ -10,10 +10,7 @@
 </head>
 <body>
 @verbatim
-<div id="app">
-	<nav-component></nav-component>
-	<list-component></list-component>
-</div>
+<div id="app"></div>
 @endverbatim
 <script src="public/js/app.js"></script>
 </body>

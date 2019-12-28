@@ -22,6 +22,7 @@ window.Vue = require('vue');
 
 import VueRouter from 'vue-router'
 import App from './components/App'
+//load components
 Vue.component('home-component', require('./components/Home.vue').default);
 Vue.component('cart-component', require('./components/Cart.vue').default);
 
