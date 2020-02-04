@@ -1,0 +1,264 @@
+<!DOCTYPE>
+<html lang="en-us">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<title>The Great Amazon - River Cruise</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+	<div id="app">
+		<!-- LOGO -->
+		<h1 id="logo"><a href="#" title="THE GREAT AMAZON - River Cruise">THE GREAT AMAZON - River Cruise</a></h1>
+		<!-- END LOGO -->
+
+		<!-- MAP -->
+		<div id="map">
+			<!-- BULLETS -->
+			<ul class="bullets">
+				<li :class="{ active: point == 'start' }"><a href="" title="1" @click.stop.prevent="goTo('start')" ref="start">1</a>
+				</li>
+				<li :class="{ active: point == 'meeting' }"><a href="" title="2"
+						@click.stop.prevent="goTo('meeting')">2</a></li>
+				<li :class="{ active: point == 'music' }"><a href="" title="3" @click.stop.prevent="goTo('music')">3</a>
+				</li>
+				<li :class="{ active: point == 'piranhas' }"><a href="" title="4"
+						@click.stop.prevent="goTo('piranhas')">4</a></li>
+				<li :class="{ active: point == 'alligator' }"><a href="" title="5"
+						@click.stop.prevent="goTo('alligator')">5</a></li>
+			</ul><!-- END BULLETS -->
+			<!-- RIVER -->
+			<div class="river">
+				<div class="cruise" :style="{ left: progress + '%' }">
+					<img src="imgs/cruise.svg">
+				</div>
+			</div><!-- END RIVER -->
+		</div><!-- END MAP -->
+
+		<!-- CONTENT -->
+		<section id="content" ref="content">
+
+			<!-- POINTS CONTAINER -->
+			<section id="pointsContainer">
+
+				<!-- PORT OF MANAUS START -->
+				<section id="portOfManausStart" ref="portOfManausStart">
+					<!-- ANIMATION -->
+					<div class="animation" v-if="point == 'start'">						
+						<object data="imgs/macaws.svg" type="image/svg+xml" class="full-screen"></object>
+						<!--img src="imgs/macaws.svg" alt="Macaws" class="full-screen">-->
+					</div>
+
+					<!-- GROUND -->
+					<div class="ground">
+						<div class="top">
+							<transition name="info">
+								<div class="info-box" v-if="point == 'start'">
+									<figure>
+										<img src="imgs/portofmanaus.jpg">
+										<div class="text">
+											<h3>PORT OF MANAUS</h3>
+											<p>
+												Your adventure starts after checking into the port of Manaus and
+												boarding
+												the cruise.
+											</p>
+											<p>
+												A welcome cocktail is offered by the Captain while safety procedures are
+												presented. Sailing down Rio Negro begins
+											</p>
+										</div>
+									</figure>
+								</div>
+							</transition>
+							<img src="imgs/port.svg" class='porto'>
+						</div>
+						<div class="bottom">
+						</div>
+					</div><!-- END GROUND -->
+
+				</section><!-- END PORT OF MANAUS START -->
+
+				<!-- MEETING WATERS -->
+				<section id="meetingWaters" ref="meetingWaters">
+					<!-- INFO BOX -->
+					<transition name="info">
+						<div class="info-box" v-if="point == 'meeting'">
+							<figure>
+								<img src="imgs/meetingwaters.jpg">
+								<div class="text">
+									<h3>MEETING OF WATERS</h3>
+									<p>
+										Off to a great start! The first stop of the cruise is at the Meeting of Waters.
+									</p>
+									<p>
+										It is the confluence between Rio Negro, a river with dark water, and the
+										sandy-colored Rio Solimões.
+									</p>
+								</div>
+							</figure>
+						</div>
+					</transition><!-- END INFO BOX -->
+
+					<!-- ANIMATION -->
+					<div class="animation">
+						<img src="imgs/amazonriver.svg">
+					</div><!-- END ANIMATION -->
+
+					<!-- GROUND -->
+					<div class="ground">
+						<div class="top">
+
+						</div>
+						<div class="bottom">
+
+						</div>
+					</div><!-- END GROUND -->
+				</section><!-- END MEETING WATERS -->
+
+				<!-- CLASSIC MUSIC -->
+				<section id="classicMusic" ref="classicMusic">
+					<!-- ANIMATION -->
+					<transition name="info">
+						<div class="animation" v-if="point == 'music'">
+							<object data="imgs/classicmusic.svg" type="image/svg+xml" style="display: block;margin: auto;"></object>
+						</div>
+					</transition>
+					<img src="imgs/natives.svg">
+
+					<!-- GROUND -->
+					<div class="ground">
+						<div class="top">
+							<img src="imgs/sun.svg">
+						</div>
+						<div class="bottom">
+						</div>
+					</div><!-- END GROUND -->
+					<img src="imgs/waterplants.svg">
+				</section><!-- END CLASSIC MUSIC -->
+
+
+				<!-- PIRANHAS -->
+				<section id="piranhas" ref="piranhas">
+
+					<!-- INFO-BOX -->
+					<transition name="info">
+						<div class="info-box" v-if="point == 'piranhas'">
+							<figure>
+								<img src="imgs/piranhas.jpg">
+								<div class="text">
+									<h3>PIRANHAS FISHING</h3>
+									<p>
+										A long stop for Piranha fishing makes a very different morning. Sit back and
+										relax
+										while fishing the legendary Piranhas.
+									</p>
+								</div>
+							</figure>
+						</div>
+					</transition><!-- END INFO-BOX -->
+
+
+					<img src="imgs/waterplants.svg">
+					<!-- ANIMATION -->
+					<div class="animation" v-if="point == 'piranhas'">
+						<object data="imgs/piranhas.svg" type="image/svg+xml" style="display: block;margin: auto;"></object>
+					</div>
+					<!-- GROUND -->
+					<div class="ground">
+						<div class="top">
+
+						</div>
+						<div class="bottom">
+						</div>
+					</div><!-- END GROUND -->
+				</section><!-- END PIRANHAS -->
+
+				<!-- ALLIGATOR -->
+				<section id="alligator" ref="alligator">
+
+					<!-- INFO-BOX -->
+					<transition name="info">
+						<div class="info-box" v-if="point == 'alligator'">
+							<figure>
+								<img src="imgs/alligators.jpg">
+								<div class="text">
+									<h3>Alligator Spotting</h3>
+									<p>
+										Watch one of Amazon’s biggest predators in their natural habitat from a very
+										privileged view. This is no zoo!
+									</p>
+								</div>
+							</figure>
+						</div>
+					</transition><!-- END INFO-BOX -->
+
+
+					<!-- ANIMATION -->
+					<div class="animation" v-if="point == 'alligator'">
+						<object data="imgs/alligators.svg" type="image/svg+xml" style="display: block;margin: auto;"></object>
+					</div>
+					<img src="imgs/natives.svg">
+					<img src="imgs/waterplants.svg">
+					<!-- GROUND -->
+					<div class="ground">
+						<div class="top">
+
+						</div>
+						<div class="bottom">
+						</div>
+					</div><!-- END GROUND -->
+				</section><!-- END ALLIGATOR -->
+
+				<!-- PORT OF MANAUS END -->
+				<section id="portOfManausEnd" ref="portOfManausEnd">
+					<!-- ANIMATION -->
+					<div class="animation">
+						<img src="imgs/macaws.svg">
+					</div>
+
+					<!-- GROUND -->
+					<div class="ground">
+						<div class="top">
+							<img src="imgs/port.svg" class='porto'>
+						</div>
+						<div class="bottom">
+						</div>
+					</div><!-- END GROUND -->
+				</section><!-- END PORT OF MANAUS END -->
+
+
+			</section><!-- END POINTSCONTAINER -->
+
+			<!-- CRUISE -->
+			<div id="cruise">
+				<img src="imgs/cruise.svg">
+			</div><!-- END CRUISE -->
+
+			<!-- MODAL -->
+			<div id="modal" :class="{active: modal}" @click="modal = false">
+				<div class="box">
+					<a id="closemodal" href="#" title="Close" class='btn-close'>X</a>
+					<h2>Next Departure Dates</h2>
+					<div class="col" v-for="(date, i) in dates" :key="i">
+						<h4>{{ date.date }}</h4>
+						<div class="progress">
+							<span class="complete" :style="{ width: (date.booked / 250 * 100) + '%' }"></span>
+						</div>
+						<span class="percent"> {{ Math.ceil(date.booked / 250 * 100) }}% Booked</span>
+						<a href="#" title="Book now" class='btn'>Book now</a>
+					</div>
+				</div>
+			</div><!-- END MODAL -->
+
+		</section><!-- END CONTENT -->
+	</div>
+
+	<!-- SCRIPTS -->
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>
