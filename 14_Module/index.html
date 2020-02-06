@@ -122,7 +122,7 @@
 				<section id="classicMusic" ref="classicMusic">
 					<!-- ANIMATION -->
 					<transition name="info">
-						<div class="animation" v-if="point == 'music'">
+						<div class="animation">
 							<object data="imgs/classicmusic.svg" type="image/svg+xml" style="display: block;margin: auto;"></object>
 						</div>
 					</transition>
@@ -216,7 +216,7 @@
 				<section id="portOfManausEnd" ref="portOfManausEnd">
 					<!-- ANIMATION -->
 					<div class="animation">
-						<img src="imgs/macaws.svg">
+						<object data="imgs/macaws.svg" type="image/svg+xml" class="full-screen"></object>
 					</div>
 
 					<!-- GROUND -->
@@ -250,6 +250,12 @@
 						<span class="percent"> {{ Math.ceil(date.booked / 250 * 100) }}% Booked</span>
 						<a href="#" title="Book now" class='btn'>Book now</a>
 					</div>
+				</div>
+			</div><!-- END MODAL -->
+			<div id="depart" :class="{active: point == ''}">
+				<div class="box">
+					<h2>Journey begins...</h2>
+					<a href="" title="Start" @click.stop.prevent="depart" class='btn' autofocus>Start</a>
 				</div>
 			</div><!-- END MODAL -->
 
