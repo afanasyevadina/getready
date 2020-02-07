@@ -18,16 +18,13 @@
 		<div id="map">
 			<!-- BULLETS -->
 			<ul class="bullets">
-				<li :class="{ active: point == 'start' }"><a href="" title="1" @click.stop.prevent="goTo('start')" ref="start">1</a>
+				<li :class="{ active: point == 'meeting' }"><a href="" title="1" @click.stop.prevent="goTo('meeting')">1</a>
 				</li>
-				<li :class="{ active: point == 'meeting' }"><a href="" title="2"
-						@click.stop.prevent="goTo('meeting')">2</a></li>
-				<li :class="{ active: point == 'music' }"><a href="" title="3" @click.stop.prevent="goTo('music')">3</a>
+				<li :class="{ active: point == 'music' }"><a href="" title="2" @click.stop.prevent="goTo('music')">2</a></li>
+				<li :class="{ active: point == 'piranhas' }"><a href="" title="3" @click.stop.prevent="goTo('piranhas')">3</a>
 				</li>
-				<li :class="{ active: point == 'piranhas' }"><a href="" title="4"
-						@click.stop.prevent="goTo('piranhas')">4</a></li>
-				<li :class="{ active: point == 'alligator' }"><a href="" title="5"
-						@click.stop.prevent="goTo('alligator')">5</a></li>
+				<li :class="{ active: point == 'alligator' }"><a href="" title="4" @click.stop.prevent="goTo('alligator')">4</a></li>
+				<li :class="{ active: point == 'end' }"><a href="" title="5" @click.stop.prevent="goTo('end')">5</a></li>
 			</ul><!-- END BULLETS -->
 			<!-- RIVER -->
 			<div class="river">
@@ -104,7 +101,7 @@
 
 					<!-- ANIMATION -->
 					<div class="animation">
-						<img src="imgs/amazonriver.svg">
+						<object data="imgs/amazonriver.svg" type="image/svg+xml" style="display: block;margin: auto;"></object>
 					</div><!-- END ANIMATION -->
 
 					<!-- GROUND -->
@@ -131,7 +128,7 @@
 					<!-- GROUND -->
 					<div class="ground">
 						<div class="top">
-							<img src="imgs/sun.svg">
+							<img src="imgs/sun.svg" :class="{sun: sun}">
 						</div>
 						<div class="bottom">
 						</div>
@@ -238,7 +235,7 @@
 			</div><!-- END CRUISE -->
 
 			<!-- MODAL -->
-			<div id="modal" :class="{active: modal}" @click="modal = false">
+			<div id="modal" :class="{active: modal}">
 				<div class="box">
 					<a id="closemodal" href="#" title="Close" class='btn-close'>X</a>
 					<h2>Next Departure Dates</h2>

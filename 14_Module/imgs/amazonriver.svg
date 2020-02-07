@@ -115,4 +115,28 @@
 	c-0.8-2.9-2-7.7-2-14.1c0-6.4,1.2-11.2,2-14.1c0.6-2.1,1.7-5.2,1.7-9.2v-9.9c0-4-1.1-7.1-1.7-9.2C1.2,98.2,0,93.4,0,87
 	c0-6.7,1.2-11.4,2-14.4c0.6-2.1,1.7-5.2,1.7-9.2v-9.9c0-4.1-1.2-7.2-1.7-9.3c-0.8-2.9-2-7.7-2-14.1S1.2,18.9,2,16
 	c0.6-2.1,1.7-5.2,1.7-9.2V-3c0-2.6-0.5-4.9-1-6.8H648z"/>
+	<style>
+	@keyframes meet {
+		0% {
+			transform: translateX(-5px) scaleX(1.1);
+		}
+		50% {
+			transform: translateX(5px) scaleX(1.1);
+		}
+		100% {
+			transform: translateX(-5px) scaleX(1.1);
+		}
+	}
+	svg {
+		transform-origin: left center;
+		animation: meet 3s linear infinite;
+	}
+</style>
+ <script>
+  // <![CDATA[
+  window.addEventListener('DOMContentLoaded', () => {
+	document.onmousewheel = (e) => window.parent.app.scroll(e);
+  })
+  // ]]>
+  </script>
 </svg>

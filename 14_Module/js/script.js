@@ -1,11 +1,3 @@
-document.getElementById('modal').onclick=function (){
-	document.getElementById('modal').setAttribute('class','');
-	return false;
-}
-
-document.onload = function() {
-	window.scrollTo(0, 0)
-}
 var app = new Vue({
 	el: '#app',
 	data: {
@@ -13,7 +5,8 @@ var app = new Vue({
 		progress: 0,
 		point: '',
 		audios: {},
-		modal: false
+		modal: false,
+		sun: false
 	},
 	watch: {
 		point: function() {
@@ -27,7 +20,7 @@ var app = new Vue({
 					this.audios.alligator.play()
 					break
 				case 'end':
-					this.audios.end.play().then(res => this.modal = true)
+					this.audios.end.play()
 					break
 			}
 		},
@@ -46,17 +39,14 @@ var app = new Vue({
 			} else {
 				this.audios.alligator.pause()
 			}
+			if(this.progress > 35) this.sun = true
 			window.scrollTo(8000 * this.progress / 100, 0)
 		}
 	},
 	methods: {
 		goTo: function(point) {
-			this.point = point
 			var box
 			switch(point) {
-				case 'start':
-					box = this.$refs.portOfManausStart.getBoundingClientRect()
-					break
 				case 'meeting':
 					box = this.$refs.meetingWaters.getBoundingClientRect()
 					break
@@ -69,31 +59,40 @@ var app = new Vue({
 				case 'alligator':
 					box = this.$refs.alligator.getBoundingClientRect()
 					break
+				case 'end':
+					box = this.$refs.portOfManausEnd.getBoundingClientRect()
+					break
 			}
 			var newProgress = (window.scrollX + box.x - (window.innerWidth - box.width) / 2) / 80
 			var interval = setInterval(() => {
 				if(newProgress > this.progress) {
 					this.progress ++
-					if(this.progress > newProgress) clearInterval(interval)
+					if(this.progress > newProgress) {
+						clearInterval(interval)
+						this.point = point
+					}
 				} else {
 					this.progress --
-					if(this.progress < newProgress) clearInterval(interval)
+					if(this.progress < newProgress) {
+						clearInterval(interval)
+						this.point = point
+					}
 				}
-			}, 25) 
+			}, 25) 			
 		},
 		scroll: function(e) {
 			var box = this.$refs.portOfManausStart.getBoundingClientRect()
 			if(box.x >= -500) this.point = 'start'
 			box = this.$refs.meetingWaters.getBoundingClientRect()
-			if(box.x + box.width <= window.innerWidth + 500 && box.width + box.x >= 500) this.point = 'meeting'
+			if(box.x + box.width <= window.innerWidth * 1.2 && box.width + box.x >= window.innerWidth / 3) this.point = 'meeting'
 			box = this.$refs.classicMusic.getBoundingClientRect()
-			if(box.x + box.width <= window.innerWidth + 500 && box.width + box.x >= 500) this.point = 'music'
+			if(box.x + box.width <= window.innerWidth * 1.2 && box.width + box.x >= window.innerWidth / 3) this.point = 'music'
 			box = this.$refs.piranhas.getBoundingClientRect()
-			if(box.x + box.width <= window.innerWidth + 500 && box.width + box.x >= 500) this.point = 'piranhas'
+			if(box.x + box.width <= window.innerWidth * 1.2 && box.width + box.x >= window.innerWidth / 3) this.point = 'piranhas'
 			box = this.$refs.alligator.getBoundingClientRect()
-			if(box.x + box.width <= window.innerWidth + 500 && box.width + box.x >= 500) this.point = 'alligator'
+			if(box.x + box.width <= window.innerWidth * 1.2 && box.width + box.x >= window.innerWidth / 3) this.point = 'alligator'
 			box = this.$refs.portOfManausEnd.getBoundingClientRect()
-			if(box.x + box.width <= window.innerWidth + 500) {
+			if(box.x + box.width <= window.innerWidth) {
 				this.point = 'end'
 			} else {
 				this.progress = (window.scrollX - e.wheelDelta) / 80
@@ -117,6 +116,8 @@ var app = new Vue({
 			music: new Audio('audio/classic_music.mp3'),
 			alligator: new Audio('audio/alligator.mp3'),
 			end: new Audio('audio/cruise_arrival.mp3')
-		}		
+		}
+		this.audios.background.loop = true
+		this.audios.end.onended = () => {this.modal = true}		
 	}
 })

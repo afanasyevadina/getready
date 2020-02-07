@@ -227,14 +227,30 @@
 			transform: translateX(-25px);
 		}
 	}
-	svg > g > polygon {
+	text {
+		transition: 1s;
+		opacity: 0;
+	}
+	svg.played text {
+		opacity: 1;
+	}
+	svg.played > g > polygon {
 		animation: play 1s ease infinite;
 	}
 </style>
  <script>
   // <![CDATA[
   window.addEventListener('DOMContentLoaded', () => {
-		document.onmousewheel = (e) => window.parent.app.scroll(e);
+		document.onmousewheel = (e) => {
+			window.parent.app.scroll(e);
+		}
+		setInterval(function() {			
+			if(window.parent.app.point == 'music') {
+				document.querySelector('svg').classList.add('played')
+			} else {
+				document.querySelector('svg').classList.remove('played')
+			}
+		}, 10)
   })
   // ]]>
   </script>

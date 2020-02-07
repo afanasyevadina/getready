@@ -88,7 +88,7 @@ body{
 #cruise{
 	position: fixed;
 	left: 525px;
-	top: 430px;
+	top: 500px;
 	z-index: 20;
 }
 #content{
@@ -232,6 +232,7 @@ body{
 
 /*CLASSICMUSIC*/
 #classicMusic .top img{
+	transition: 2s;
 	display: block;
 	margin: auto;
 }
@@ -341,7 +342,6 @@ body{
 	line-height: 40px;
 	border-radius: 3px;
 	background: #3891B6;
-	animation: grow .8s;
 }
 #modal .box .col .progress{
 	width: 100%;
@@ -401,15 +401,23 @@ body{
 	}
 }
 .info-enter-active {
-	animation: fade 1s;
+	animation: fade 1.2s;
 }
 .info-leave-active {
-	animation: fade 1s reverse;
+	animation: fade 1.2s reverse;
 }
 .full-screen {
 	width: 100vw;
 	height: 100%;
 }
 .under {
+	position: absolute;
 	z-index: 26;
+}
+#modal.active .box .col .progress .complete {
+	transform-origin: left;
+	animation: grow 1s;
+}
+.sun {
+	transform: translateY(-200%);
 }
