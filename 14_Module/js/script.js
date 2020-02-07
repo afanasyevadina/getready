@@ -95,7 +95,7 @@ var app = new Vue({
 			if(box.x + box.width <= window.innerWidth) {
 				this.point = 'end'
 			} else {
-				this.progress = (window.scrollX - e.wheelDelta) / 80
+				this.progress = (window.scrollX - e.wheelDelta / 3) / 80
 			}
 		},
 		depart: function() {
