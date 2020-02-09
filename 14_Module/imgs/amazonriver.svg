@@ -130,12 +130,14 @@
 	svg {
 		transform-origin: left center;
 		animation: meet 3s linear infinite;
+		overflow: hidden;
 	}
 </style>
  <script>
   // <![CDATA[
   window.addEventListener('DOMContentLoaded', () => {
-	document.onmousewheel = (e) => window.parent.app.scroll(e);
+	document.onmousewheel = (e) => window.parent.app.scroll(e.wheelDelta);
+	document.addEventListener('DOMMouseScroll', e => window.parent.app.scroll(e.detail * -40));
   })
   // ]]>
   </script>

@@ -1,20 +1,22 @@
+/*
+Code for svg animations placed in *.svg files
+*/
 var app = new Vue({
 	el: '#app',
 	data: {
-		dates : [],
-		progress: 0,
-		point: '',
-		audios: {},
-		modal: false,
-		sun: false
+		dates : [], //dates in modal
+		progress: 0, //page scroll
+		point: '', //current station
+		audios: {}, //music
+		modal: false //show modal
 	},
 	watch: {
+		//when the station changed
 		point: function() {
 			this.audios.alligator.pause()
 			switch(this.point) {
 				case 'music':
 					this.audios.music.play()
-					break
 					break
 				case 'alligator':
 					this.audios.alligator.play()
@@ -25,6 +27,8 @@ var app = new Vue({
 			}
 		},
 		progress: function() {
+			//events when scrolling
+			//volume changes arrording to current point
 			if(this.progress > 10 && this.progress < 40) {
 				let offset = this.progress > 25 ? this.progress - 25 : 25 - this.progress
 				this.audios.music.volume = (15 - offset) / 15
@@ -39,13 +43,15 @@ var app = new Vue({
 			} else {
 				this.audios.alligator.pause()
 			}
-			if(this.progress > 35) this.sun = true
+			//cruise moving
 			window.scrollTo(8000 * this.progress / 100, 0)
 		}
 	},
 	methods: {
+		//by click on point on map
 		goTo: function(point) {
 			var box
+			//define the target
 			switch(point) {
 				case 'meeting':
 					box = this.$refs.meetingWaters.getBoundingClientRect()
@@ -64,6 +70,7 @@ var app = new Vue({
 					break
 			}
 			var newProgress = (window.scrollX + box.x - (window.innerWidth - box.width) / 2) / 80
+			//slow scroll to target
 			var interval = setInterval(() => {
 				if(newProgress > this.progress) {
 					this.progress ++
@@ -81,6 +88,7 @@ var app = new Vue({
 			}, 25) 			
 		},
 		scroll: function(e) {
+			//define the current point
 			var box = this.$refs.portOfManausStart.getBoundingClientRect()
 			if(box.x >= -500) this.point = 'start'
 			box = this.$refs.meetingWaters.getBoundingClientRect()
@@ -92,12 +100,13 @@ var app = new Vue({
 			box = this.$refs.alligator.getBoundingClientRect()
 			if(box.x + box.width <= window.innerWidth * 1.2 && box.width + box.x >= window.innerWidth / 3) this.point = 'alligator'
 			box = this.$refs.portOfManausEnd.getBoundingClientRect()
-			if(box.x + box.width <= window.innerWidth) {
+			if(box.x + box.width <= window.innerWidth + 200) {
 				this.point = 'end'
 			} else {
-				this.progress = (window.scrollX - e.wheelDelta / 3) / 80
+				this.progress = (window.scrollX - e / 3) / 80
 			}
 		},
+		//start
 		depart: function() {
 			window.scrollTo(0, 0)
 			this.point = 'start'
@@ -106,10 +115,13 @@ var app = new Vue({
 		}
 	},
 	created() {
+		//fetch data from file
 		fetch('dates.json')
 		.then(response => response.json())
 		.then(json => this.dates = json.dates)
-		window.onmousewheel = e => this.scroll(e)
+		window.onmousewheel = e => this.scroll(e.wheelDelta)
+		window.addEventListener('DOMMouseScroll', e => this.scroll(e.detail * -40));
+		//media settings
 		this.audios = {
 			start: new Audio('audio/cruise_departure.mp3'),
 			background: new Audio('audio/background.mp3'),
@@ -118,6 +130,8 @@ var app = new Vue({
 			end: new Audio('audio/cruise_arrival.mp3')
 		}
 		this.audios.background.loop = true
+		this.audios.music.loop = true
+		this.audios.alligator.loop = true
 		this.audios.end.onended = () => {this.modal = true}		
 	}
 })

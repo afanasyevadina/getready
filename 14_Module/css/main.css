@@ -232,7 +232,7 @@ body{
 
 /*CLASSICMUSIC*/
 #classicMusic .top img{
-	transition: 2s;
+	transition: 4s;
 	display: block;
 	margin: auto;
 }
@@ -400,6 +400,7 @@ body{
 		opacity: 1;
 	}
 }
+/* info-box */
 .info-enter-active {
 	animation: fade 1.2s;
 }
@@ -410,14 +411,17 @@ body{
 	width: 100vw;
 	height: 100%;
 }
+/* images */
 .under {
 	position: absolute;
 	z-index: 26;
 }
+/*modal rows*/
 #modal.active .box .col .progress .complete {
 	transform-origin: left;
 	animation: grow 1s;
 }
+/*sun animation*/
 .sun {
 	transform: translateY(-200%);
 }

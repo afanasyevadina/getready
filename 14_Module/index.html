@@ -128,7 +128,7 @@
 					<!-- GROUND -->
 					<div class="ground">
 						<div class="top">
-							<img src="imgs/sun.svg" :class="{sun: sun}">
+							<img src="imgs/sun.svg" :class="{sun: this.point == 'piranhas'}">
 						</div>
 						<div class="bottom">
 						</div>
@@ -212,7 +212,7 @@
 				<!-- PORT OF MANAUS END -->
 				<section id="portOfManausEnd" ref="portOfManausEnd">
 					<!-- ANIMATION -->
-					<div class="animation">
+					<div class="animation" v-if="!modal">
 						<object data="imgs/macaws.svg" type="image/svg+xml" class="full-screen"></object>
 					</div>
 
@@ -235,7 +235,7 @@
 			</div><!-- END CRUISE -->
 
 			<!-- MODAL -->
-			<div id="modal" :class="{active: modal}">
+			<div id="modal" :class="{active: modal}" @click="modal = false">
 				<div class="box">
 					<a id="closemodal" href="#" title="Close" class='btn-close'>X</a>
 					<h2>Next Departure Dates</h2>
